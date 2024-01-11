@@ -29,21 +29,23 @@ const RegistrationForm = () => {
     onSubmit: (values) => {
       setLoading(true);
 
-      mutate<{
-        login: {
-          user: { username: string; email: string; id: string };
-          jwt: string;
-        };
-      }>({ mutation: LOGIN, variables: values })
-        .then((res) => {
-          if (res.data?.login)
-            handleLogin(res.data.login.user, res.data.login.jwt);
-          setLoading(false);
-        })
-        .catch(() => {
-          openModal(<IncorrectCredentials />);
-          setLoading(false);
-        });
+      console.log(values);
+
+      // mutate<{
+      //   login: {
+      //     user: { username: string; email: string; id: string };
+      //     jwt: string;
+      //   };
+      // }>({ mutation: LOGIN, variables: values })
+      //   .then((res) => {
+      //     if (res.data?.login)
+      //       handleLogin(res.data.login.user, res.data.login.jwt);
+      //     setLoading(false);
+      //   })
+      //   .catch(() => {
+      //     openModal(<IncorrectCredentials />);
+      //     setLoading(false);
+      //   });
     },
     validate: (values) => {
       const errors: { [key: string]: string } = {};

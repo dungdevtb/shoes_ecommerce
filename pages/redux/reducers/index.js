@@ -5,9 +5,11 @@
 import { HYDRATE } from 'next-redux-wrapper';
 import { combineReducers } from 'redux';
 import auth from './auth.reducer';
+import product from './product.reducer';
 
 const _reducers = combineReducers({
-    auth
+    auth,
+    product
 })
 
 function reducers(state, action) {

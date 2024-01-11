@@ -1,20 +1,33 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-
 import Footer from '@/common/components/footer/components/Footer';
 import mainImage from '@/public/img/main.jpg';
-
 import {
   collectionListAnimation,
   imageAnimation,
   textAnimation,
 } from '../animations/Home.animations';
 import CollectionList from './CollectionList';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { actionGetListProduct } from '../../../pages/redux/actions/product.action.tsx';
+import axios from 'axios';
 
 const headerStyle =
   'text-5xl md:text-6xl xl:text-extra font-extrabold xl:-mt-12 -mt-5 md:-mt-8';
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      const res = await actionGetListProduct({}, dispatch)
+      console.log(res);
+
+    })()
+
+  }, [])
+
   return (
     <div className="flex h-full w-full items-center justify-center">
       <motion.div
