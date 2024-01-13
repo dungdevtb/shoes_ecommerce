@@ -1,15 +1,25 @@
 import { useSetRecoilState } from 'recoil';
-
 import filterAtom, { defaultFilter } from '@/common/recoil/filter';
 import kidImage from '@/public/img/kid.jpg';
 import menImage from '@/public/img/men.jpg';
 import unisexImage from '@/public/img/unisex.jpg';
 import womenImage from '@/public/img/women.jpg';
-
 import Collection from './Collection';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { actionGetListProduct } from '@/pages/redux/actions/product.action';
 
 const CollectionList = () => {
   const setFilter = useSetRecoilState(filterAtom);
+  // let dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const res = await actionGetListProduct({}, dispatch)
+  //     console.log(res);
+
+  //   })()
+  // }, [])
 
   return (
     <div className="py-28">
@@ -19,15 +29,18 @@ const CollectionList = () => {
             title="Men"
             subtitle="See our men collection for summer"
             image={menImage}
-            handleClick={() =>
-              setFilter({
-                ...defaultFilter,
-                gender: {
-                  ...defaultFilter.gender,
-                  men: true,
-                },
-              })
-            }
+            handleClick={() => {
+              console.log('men')
+            }}
+          // handleClick={() =>
+          //   setFilter({
+          //     ...defaultFilter,
+          //     gender: {
+          //       ...defaultFilter.gender,
+          //       men: true,
+          //     },
+          //   })
+          // }
           />
           <Collection
             title="Women"

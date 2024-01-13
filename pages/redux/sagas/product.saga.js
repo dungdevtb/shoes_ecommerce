@@ -36,7 +36,8 @@ export function* fetchProductList() {
 // }
 
 const productSagas = [
-    fork(fetchProductList)
+    fork()
+    // fork(fetchProductList)
     //   fork(fetchCategoryProductList),
 ];
 

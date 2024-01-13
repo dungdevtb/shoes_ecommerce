@@ -16,22 +16,22 @@ const MainLayout = ({ children }: { children: JSX.Element }) => {
   const lastScrollY = useRef(0);
   const lastPathName = useRef('');
 
-  useEffect(() => {
-    const node = document.getElementById('__next');
-    if (node) {
-      node.classList.add('on-scrollbar');
-      if (router.pathname === '/shoes' && lastPathName.current === '/[slug]')
-        node.scrollTop = lastScrollY.current;
-      else node.scrollTop = 0;
-    }
+  // useEffect(() => {
+  //   const node = document.getElementById('__next');
+  //   if (node) {
+  //     node.classList.add('on-scrollbar');
+  //     if (router.pathname === '/shoes' && lastPathName.current === '/[slug]')
+  //       node.scrollTop = lastScrollY.current;
+  //     else node.scrollTop = 0;
+  //   }
 
-    return () => {
-      if (node) {
-        lastPathName.current = router.pathname;
-        if (router.pathname === '/shoes') lastScrollY.current = node.scrollTop;
-      }
-    };
-  }, [router]);
+  //   return () => {
+  //     if (node) {
+  //       lastPathName.current = router.pathname;
+  //       if (router.pathname === '/shoes') lastScrollY.current = node.scrollTop;
+  //     }
+  //   };
+  // }, [router]);
 
   return (
     <RecoilRoot>
