@@ -16,10 +16,22 @@ export const actionGetListProduct = async (payload: any, dispatch: any) => {
         if (response.statusCode !== 200) {
             return response?.message || 'ERORR';
         }
-        // const token = response?.data?.token || null;
-        // localStorage.setItem('token', token);
 
         await dispatch(actionSaveListProduct(response?.data));
+        return response?.data;
+    } catch (error) {
+        alert(error);
+    }
+};
+
+export const actionGetDetailProduct = async (payload: any, dispatch: any) => {
+    try {
+        const response = await fetchApi(`/api/product/get-detail-product?id=${payload}`, 'get');
+
+        if (response.statusCode !== 200) {
+            return response?.message || 'ERORR';
+        }
+
         return response?.data;
     } catch (error) {
         alert(error);

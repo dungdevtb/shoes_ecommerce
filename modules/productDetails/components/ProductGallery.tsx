@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-
 import { cloudinaryLoader } from '@/common/lib/cloudinaryLoader';
-
 import { galleryVariants } from '../animations/ProductGallery.animations';
 
 const swipeConfidenceThreshold = 10000;
@@ -13,12 +10,21 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
+interface ProductSlickProps {
+  images: { name: string; image: string }[];
+}
+
+interface ImageItem {
+  name: string;
+  image: string;
+}
+
 const ProductGallery = ({
   images,
-  blurDataUrls,
+  // blurDataUrls,
 }: {
-  images: Image[];
-  blurDataUrls: { [key: string]: string };
+  images: ImageItem[];
+  // blurDataUrls: { [key: string]: string };
 }) => {
   const [initial, setInitial] = useState(true);
 
@@ -36,6 +42,7 @@ const ProductGallery = ({
 
     setImage([newIndex, newDirection]);
   };
+
 
   return (
     <div className="relative h-full">
@@ -60,16 +67,16 @@ const ProductGallery = ({
         className="h-full w-full"
       >
         <Image
-          loader={cloudinaryLoader}
-          src={images[imageIndex].attributes.hash}
+          // loader={cloudinaryLoader}
           alt="Detail photo"
-          width={images[imageIndex].attributes.width}
-          height={images[imageIndex].attributes.height}
+          width={880}
+          height={1100}
+          src={images[imageIndex].image}
           className="pointer-events-none object-cover"
           layout="raw"
           priority
-          placeholder="blur"
-          blurDataURL={blurDataUrls[images[imageIndex].attributes.hash]}
+        // placeholder="blur"
+        // blurDataURL={blurDataUrls[images[imageIndex].attributes.hash]}
         />
       </motion.div>
       <button

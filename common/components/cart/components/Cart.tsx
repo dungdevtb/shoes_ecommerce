@@ -27,13 +27,16 @@ const Cart = () => {
 
   const clearCart = useClearCart();
 
-  const totalPrice = cart.attributes.products.reduce((acc, product) => {
-    return (
-      acc +
-      product.quantity *
-      (product.attributes.promotionPrice || product.attributes.price)
-    );
-  }, 0);
+  // console.log(cart);
+
+
+  // const totalPrice = cart.attributes.products.reduce((acc, product) => {
+  //   return (
+  //     acc +
+  //     product.quantity *
+  //     (product.attributes.promotionPrice || product.attributes.price)
+  //   );
+  // }, 0);
 
   return (
     <>
@@ -78,7 +81,7 @@ const Cart = () => {
 
         <div>
           <div className="mb-2 flex w-full flex-col items-start justify-between sm:mb-0 sm:flex-row sm:items-center">
-            <h3 className="text-xl font-semibold">Total: €{totalPrice}</h3>
+            {/* <h3 className="text-xl font-semibold">Total: €{totalPrice}</h3> */}
             <h4>
               <BiPackage className="mb-[2px] inline" /> Free shipping
             </h4>

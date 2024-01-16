@@ -108,4 +108,48 @@ export declare global {
     username: string;
     email: string;
   }
+
+  interface Color {
+    id: number;
+    name: string;
+    image: string;
+    quantity: number;
+    product_id: number;
+  }
+
+  interface SizeColor {
+    id: number;
+    color: Color;
+  }
+
+  interface Size {
+    id: number;
+    size: string;
+    product_id: number;
+    size_color: SizeColor[];
+  }
+
+  interface ProductSample {
+    id: number;
+    name: string;
+    description: string;
+    quantity: number;
+    image: string;
+    import_price: number;
+    sell_price: number;
+    status: number;
+    display_order: number;
+    createdAt: string;
+    category: {
+      id: number;
+      name: string;
+    };
+    brand: {
+      id: number;
+      name: string;
+    };
+    colors: Color[];
+    sizes: Size[];
+  }
+
 }

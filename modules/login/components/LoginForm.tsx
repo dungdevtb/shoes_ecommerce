@@ -1,35 +1,39 @@
 import { useState } from 'react';
-
 import { useApolloClient } from '@apollo/client';
 import { useFormik } from 'formik';
-
 import LoaderButton from '@/common/components/button/components/LoaderButton';
 import InputComponent from '@/common/components/input/components/InputComponent';
 import InputPasswordComponent from '@/common/components/input/components/InputPasswordComponent';
 import { LOGIN } from '@/common/graphql/mutation/LOGIN';
 import { useModal } from '@/common/recoil/modal';
 import { useLogin } from '@/common/recoil/user';
-
 import IncorrectCredentials from '../modals/IncorrectCredentials';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { actionLogin } from '@/pages/redux/actions/auth.action';
 
 const RegistrationForm = () => {
   const { mutate } = useApolloClient();
-
-  const [loading, setLoading] = useState(false);
-
   const { handleLogin } = useLogin();
-
+  const [loading, setLoading] = useState(false);
   const { openModal } = useModal();
+  const router = useRouter();
+  let dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setLoading(true);
-
-      console.log(values);
+      const res = await actionLogin(values, dispatch)
+      if (typeof res === 'string') {
+        openModal(<IncorrectCredentials />);
+      } else {
+        router.push('/')
+      }
+      setLoading(false);
 
       // mutate<{
       //   login: {
